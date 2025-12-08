@@ -26,4 +26,9 @@ clang-format -style=file:.clang-format -i src/*
 
 will replace the things inplace
 
+```shell
+clang-format -style=file:.clang-format -i src/*.cpp include/*.h test/*.cpp
+```
+
+
 

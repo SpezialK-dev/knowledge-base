@@ -15,3 +15,45 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 
 After that the application should no longer stay white 
+
+# Setting Brightness 
+
+```config 
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+```
+
+
+# launchers 
+
+https://github.com/Cloudef/bemenu -> if you want the most similar to i3 experience 
+
+
+# Launching things on specifc 
+
+[readme](https://gist.github.com/3lpsy/9fc13dae3ba9c176013e3f6457b458e2)
+
+
+
+
+# XDG-Desktop missing implementation 
+
+in Zed
+
+https://github.com/zed-industries/zed/issues/14874 might have some answers to this problem 
+
+for sway this should be fixed with the `xdg-desktop-portal-gtk` package under arch 
+
+as can be taken from this table https://wiki.archlinux.org/title/XDG_Desktop_Portal#List_of_backends_and_interfaces
+
+
+# Screenflickering in some applications 
+
+like zed or some other apps after 1.11  version on sway
+
+https://github.com/swaywm/sway/issues/8755
+
+add the following line to your bashrc
+```bash
+export WLR_RENDER_NO_EXPLICIT_SYNC=1
+```

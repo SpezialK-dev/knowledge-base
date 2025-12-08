@@ -19,3 +19,17 @@ clear line :
 ```
 \33[2K\r
 ```
+
+Some preprocessor C code that clears lines / below / above cursor
+```C
+#define CLEARLINE printf("\33[2K\r");
+#define CLEARBELOWCURSOR printf("\x1b[0J");
+#define CLEARABOVECURSOR printf("\x1b[1J");
+```
+
+# Detecting cursor (in a terminal context)
+
+This does not refere to your mouse pointer but rather where your input lies in the terminal 
+
+- [linuxquestions Thread](https://www.linuxquestions.org/questions/programming-9/get-cursor-position-in-c-947833/)
+- [conio.h](https://code-reference.com/c/conio.h/wherex) -> a lib that allows wherex and wherey and goto on screen
