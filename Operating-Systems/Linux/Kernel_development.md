@@ -20,3 +20,51 @@ in my case the following c code fixed it
 	mem_class = class_create(THIS_MODULE, "fmem");
 	#endif
 ```
+
+
+# init_module() depricated 
+
+
+```shell
+objtool: init_module(): Magic init_module() function name is deprecated, use module_init(fn) instead
+```
+
+here is an example on how to replace this
+```diff
+diff --git a/drivers/dahdi/dahdi_dummy.c b/drivers/dahdi/dahdi_dummy.c
+index b1004d99..9bd86dfb 100644
+--- a/drivers/dahdi/dahdi_dummy.c
++++ b/drivers/dahdi/dahdi_dummy.c
+@@ -209,7 +209,7 @@ static int dahdi_dummy_initialize(struct dahdi_dummy *ztd)
+ 	return res;
+ }
+ 
+-int init_module(void)
++static int __init dummy_init(void)
+ {
+ 	int res;
+ 	ztd = kzalloc(sizeof(*ztd), GFP_KERNEL);
+@@ -250,8 +250,7 @@ int init_module(void)
+ 	return 0;
+ }
+ 
+-
+-void cleanup_module(void)
++static void __exit dummy_exit(void)
+ {
+ #if defined(USE_HIGHRESTIMER)
+ 	/* Stop high resolution timer */
+@@ -272,3 +271,6 @@ module_param(debug, int, 0600);
+ MODULE_DESCRIPTION("Timing-Only Driver");
+ MODULE_AUTHOR("Robert Pleh <robert.pleh@hermes.si>");
+ MODULE_LICENSE("GPL v2");
++
++module_init(dummy_init);
++module_exit(dummy_exit);
+```
+
+taken from https://github.com/asterisk/dahdi-linux/pull/99/commits/aff90d06503b495347b5a7e53d936cd370a4220e
+
+so basicly you just take your previous functions rename them to some dummy names and pass them to the new functions. 
+
+4fab2d7628dd38f3fa8a5e615199350ecaeb17a8 -> appears to be the kernel commit that this was changed in. 
