@@ -3,8 +3,11 @@ This is mainly research,so take everything with a grain of salt here.
 
 # Inital Look into things 
 
-https://github.com/myspaghetti/virtualbox-generate-nvram-bin-file
-https://github.com/infokiller/win10-vm?tab=readme-ov-file#using-uefi-firmware-with-the-required-keys
+- https://github.com/myspaghetti/virtualbox-generate-nvram-bin-file
+- https://github.com/infokiller/win10-vm?tab=readme-ov-file#using-uefi-firmware-with-the-required-keys
+- https://deepwiki.com/LongSoft/UEFITool/3.1-uefitool-gui#overview
+- https://ally-petitt.com/en/posts/2024-07-05_emulating-with-nvram/
+- https://github.com/LongSoft/UEFITool/blob/new_engine/common/nvramparser.cpp
 
 ## Using QEMU
 
@@ -44,3 +47,14 @@ it appears that there is a difference between after booting, a linux, so if you 
 ```
 
 an example, to replicate this, you add a SATA CDROM again this time with a fedora ( in this case) when this boots normally this entry gets written. Just selecting adding the CDROM back and selecting the new media there does not add anything. But once its booted you get a MOK screen as well as this new entry. 
+
+
+now after rebooting into windows this stays persistent, and some more data has been written into the the NVRAM. Even though I only temporarily booted a Linux and did not change anything in the actual boot order. 
+
+# Found Tooling 
+
+
+- https://github.com/LongSoft/UEFITool
+- https://github.com/tianocore/edk2/tree/master/BaseTools/Source/Python/FMMT
+- https://github.com/linuxboot/fiano
+- https://github.com/theopolis/uefi-firmware-parser
