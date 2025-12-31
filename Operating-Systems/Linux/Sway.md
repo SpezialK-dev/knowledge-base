@@ -57,3 +57,24 @@ add the following line to your bashrc
 ```bash
 export WLR_RENDER_NO_EXPLICIT_SYNC=1
 ```
+
+
+# Adding gammastep support 
+
+https://wiki.gentoo.org/wiki/Gammastep
+
+some weird behavior I noticed, was that I could not toggle the red light via the in build gtk icon on my swaybar, if I was starting gammastep via the sway config 
+ie 
+```conf
+exec gammastep
+```
+
+it would do its job but you could not control it. 
+
+the correct way to do it was to enable the gammastep service 
+```shell
+systemctl --user enable gammastep.service
+systemctl --user start gammastep.service
+```
+
+then the icon in swaybar also worked. Fully reading wiki pages sometimes helps. 
