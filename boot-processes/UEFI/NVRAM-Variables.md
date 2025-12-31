@@ -8,7 +8,7 @@ This is mainly research,so take everything with a grain of salt here.
 - https://deepwiki.com/LongSoft/UEFITool/3.1-uefitool-gui#overview
 - https://ally-petitt.com/en/posts/2024-07-05_emulating-with-nvram/
 - https://github.com/LongSoft/UEFITool/blob/new_engine/common/nvramparser.cpp
-
+- https://ruuucker.github.io/EFI-Basics-NVRAM-Variables/
 ## Using QEMU
 
 on systems that use a 
@@ -51,6 +51,15 @@ an example, to replicate this, you add a SATA CDROM again this time with a fedor
 
 now after rebooting into windows this stays persistent, and some more data has been written into the the NVRAM. Even though I only temporarily booted a Linux and did not change anything in the actual boot order. 
 
+
+# Accessing NVRAM variables from userspace
+
+linux should map them into `firmware/efi/efivars`, you could write your own lib to paarse them from the filesystem but that is not needed
+since [efivars](https://github.com/rhboot/efivar)([Archlinux package](https://archlinux.org/packages/core/x86_64/efivar/)) exist. With this you can simply access them. 
+
+To iterate through simply use `int efi_get_next_variable_name(efi_guid_t **guid**, char **name)`
+in combination with a loop, the func returns 0 when the iteration is complete so its quite easy to build something around that.
+
 # Found Tooling 
 
 
@@ -58,3 +67,7 @@ now after rebooting into windows this stays persistent, and some more data has b
 - https://github.com/tianocore/edk2/tree/master/BaseTools/Source/Python/FMMT
 - https://github.com/linuxboot/fiano
 - https://github.com/theopolis/uefi-firmware-parser
+- https://github.com/chipsec/chipsec
+- https://www.kernel.org/doc/html/latest/filesystems/efivarfs.html
+- https://github.com/datasone/setup_var.efi
+- https://github.com/GeographicCone/UefiVarTool
