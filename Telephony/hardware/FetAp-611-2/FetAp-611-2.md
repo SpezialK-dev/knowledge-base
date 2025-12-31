@@ -1,3 +1,7 @@
+z
+# Some artikels that are worth a read
+
+- https://kleine-technikwelt.de/alte-telefone-an-der-fritzbox.php
 
 # Goals of this project 
 
