@@ -1,7 +1,7 @@
 
-shim allows you to secure boot using the microsoft signed keys.
+shim allows you to secure boot using the Microsoft signed keys.
 
-This can be usefull when dualbooting 
+This can be useful when dual booting 
 
 # disabling checking
 if you want to load unsigned kernel modules or even an unsigned kernel but still have secure boot enabled in the bios you can simply disable shim checking for those things with the user land application mokutil

@@ -60,6 +60,26 @@ since [efivars](https://github.com/rhboot/efivar)([Archlinux package](https://ar
 To iterate through simply use `int efi_get_next_variable_name(efi_guid_t **guid**, char **name)`
 in combination with a loop, the func returns 0 when the iteration is complete so its quite easy to build something around that.
 
+
+
+## Using the Filesystem 
+
+The first 4 bytes are the attributes of the efivar that you are looking at `4_bytes_of_attributes + efivar_data`
+https://wiki.gentoo.org/wiki/Efivarfs/en
+
+# Some meanings 
+
+I am not including the GUID, since the name should be good enough.  
+More meanings outside of my own trial an error are documented in  the [SHIM Repository from redhat](https://github.com/rhboot/shim/blob/c4665d282072df2ed8ab6ae1d5fa0de41e5db02f/MokVars.txt#L19)
+## MokSBStateRT
+
+Its pure existance means that validation is disabled! 
+https://github.com/lcp/mokutil/blob/9ae73db13e2bf0c610b0dcced5410fd6dc61f68a/src/mokutil.c#L1451
+
+
+# SecureBoot
+
+if set to larger than 0 secure boot disabled. 
 # Found Tooling 
 
 
@@ -71,3 +91,4 @@ in combination with a loop, the func returns 0 when the iteration is complete so
 - https://www.kernel.org/doc/html/latest/filesystems/efivarfs.html
 - https://github.com/datasone/setup_var.efi
 - https://github.com/GeographicCone/UefiVarTool
+

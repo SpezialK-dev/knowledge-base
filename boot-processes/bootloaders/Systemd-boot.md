@@ -38,5 +38,9 @@ case KEYPRESS(0, 0, 'E'):
                         break;
 ```
 
-The only Systemdboot protects weirdly enough is Unified Kernel images in Secure boot, that include a cmdline already. 
-So there are still plenty of things vulnerable where you DO not have an option under systemd to protect yourself. Also if you have an entry, that does not have such an option that could be abused to chainload something else.
+The only Thing Systemdboot protects weirdly enough is Unified Kernel images in Secure boot that include a cmdline. 
+So there are still plenty of things vulnerable where you DO not have an option under systemd to protect yourself. Also if you have an entry, that does not have such an option that could be abused to chain load something else.
+
+I think in general, it could simply ask for a password that can be set would be a bit smarter, allowing one to have a setup, without having to go full PKI and unified kernel image. 
+
+
