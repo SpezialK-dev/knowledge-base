@@ -69,7 +69,7 @@ exec qemu-system-x86_64 \
     -display gtk,grab-on-hover=on \
     -chardev socket,id=chrtpm,path=/tmp/emulated_tpm/swtpm-sock \
     -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0 \     
-    -drive if=pflash,format=raw,readonly=on,file=<Path to OVMF_CODE.secboot.4m.fd> \
+    -drive if=pflash,format=raw,readonly=on,file=<Path to 2.secboot.4m.fd> \
     -drive if=pflash,format=raw,file=<Path to OVMF_VARS.4m.fd> \
 
 	"$@"
@@ -219,3 +219,17 @@ to the /etc/nftables.conf config file. and then Rebooting fixed the issue (dont 
 
 Though that allowed me to forward dhcp requests and atleast connect though i had no internet so i simply switched to ufw. 
 and followed the given command in the artix post. 
+
+
+
+# Hypervisor Details 
+
+choosing a chipset under Virtual Machine Manager
+
+https://wiki.qemu.org/images/f/f6/PCIvsPCIe.pdf
+https://wiki.qemu.org/images/4/4e/Q35.pdf
+
+The current supported optiosn are Q35 and i440fx
+
+Q35 is the newer option that has support for some newer features, like secure boot.
+While i440fx seems to be a more legacy option that is needed when you want to boot legacy systems like windows xp/ 2000 or older. 
