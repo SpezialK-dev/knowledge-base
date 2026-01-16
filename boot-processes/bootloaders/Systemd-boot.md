@@ -1,4 +1,4 @@
-
+The [man page](https://www.man7.org/linux/man-pages/man7/systemd-boot.7.html)
 A boot loader from Systemd the src can be found [here](https://github.com/systemd/systemd/tree/main/src/boot). 
 # Editing of Entries 
 
@@ -38,9 +38,49 @@ case KEYPRESS(0, 0, 'E'):
                         break;
 ```
 
-The only Thing Systemdboot protects weirdly enough is Unified Kernel images in Secure boot that include a cmdline. 
-So there are still plenty of things vulnerable where you DO not have an option under systemd to protect yourself. Also if you have an entry, that does not have such an option that could be abused to chain load something else.
 
-I think in general, it could simply ask for a password that can be set would be a bit smarter, allowing one to have a setup, without having to go full PKI and unified kernel image. 
+Systemdboot seemingly has an option to toggle to prevent editing. 
+as it is apparent in https://old.reddit.com/r/archlinux/comments/x2xvd8/cant_edit_systemdboot_entries_with_e_key/
 
+the file is loaced at `/boot/loader/loader.conf ` :
 
+```loader.conf
+editor no
+```
+disables the editing for all entries and is what should be chosen if you have secure boot. 
+This is a footnote in the [man page](https://www.man7.org/linux/man-pages/man5/loader.conf.5.html) this should also be included in some other sources. It is currently not.
+
+```c
+ typedef struct {
+          BootEntry **entries;
+          size_t n_entries;
+          size_t idx_default;
+          size_t idx_default_efivar;
+          uint64_t timeout_sec; /* Actual timeout used (efi_main() override > smbios > efiva     r > config). */
+          uint64_t timeout_sec_smbios;
+          uint64_t timeout_sec_config;
+          uint64_t timeout_sec_efivar;
+          char16_t *entry_default_config;
+          char16_t *entry_default_efivar;
+          char16_t *entry_oneshot;
+          char16_t *entry_saved;
+          char16_t *entry_sysfail;
+          bool editor;
+          bool auto_entries;
+          bool auto_firmware;
+          bool auto_poweroff;
+          bool auto_reboot;
+          bool reboot_for_bitlocker;
+          RebootOnError reboot_on_error;
+          secure_boot_enroll secure_boot_enroll;
+          secure_boot_enroll_action secure_boot_enroll_action;
+          uint64_t secure_boot_enroll_timeout_sec;
+          bool force_menu;
+          bool use_saved_entry;
+          bool use_saved_entry_efivar;
+          bool beep;
+          bool sysfail_occured;
+          int64_t console_mode;
+          int64_t console_mode_efivar;
+  } Config;
+```
