@@ -1,3 +1,4 @@
+
 # creating your own Setup
 
 [a good overview of Software](https://wiki.archlinux.org/title/Network_configuration#Network_managers)
@@ -58,7 +59,7 @@ RouterMetric=600
 
 
 
-# Problem with wifi going down 
+# PowerSaving 
 
 Common trouble shooting things 
 ## Common symptoms
@@ -79,6 +80,28 @@ the following command disbles the powersaving of the wifi chip this might increa
 sudo iw dev wlan0 set power_save off
 ```
 This allows a quicker reconnect after a disconnect. But and can sometimes help but Otherwiese it does not really help if you have more services running which is usually the problem Check [creating your own Setup](# creating your own Setup) for a grafik of what to use with what. 
+an alternative is to use iwconfig : 
+
+```shell
+sudo iwconfig wlan0 power off
+```
+
+### Persistance under IWD
+
+under iwd you will need to add 
+this option was found in the iwd.config man page!
+```
+[DriverQuirks]
+PowerSaveDisable=*
+```
+Source : https://wiki.archlinux.org/title/Power_management#Network_interfaces
+the driver name can be found via `lspci -k`
+
+persistence can be checked via:
+(this can be checked by simply calling `iwconfig` in a terminal)
+
+then the following path might offer a solution 
+https://askubuntu.com/questions/85214/how-can-i-prevent-iwconfig-power-management-from-being-turned-on
 
 # Problem with wifi being down
 [in my case working solution](## trying out iwctl and iw)

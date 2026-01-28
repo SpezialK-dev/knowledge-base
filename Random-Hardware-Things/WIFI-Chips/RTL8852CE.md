@@ -34,5 +34,8 @@ based on this man page
 ├────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
 ```
 
+Another thing that might give some more stability is deactivating, power saving this can be done as showen in this [Guid](Operating-Systems/Linux/Networking#PowerSaving) 
+
 https://forums.linuxmint.com/viewtopic.php?t=443611
 https://bbs.archlinux.org/viewtopic.php?id=309941
+
