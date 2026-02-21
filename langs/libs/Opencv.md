@@ -1,4 +1,4 @@
-
+#c 
 # Opencv
 
 Problems under arch linux of not finding the libs. 
