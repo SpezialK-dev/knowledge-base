@@ -91,4 +91,5 @@ if set to larger than 0 secure boot disabled.
 - https://www.kernel.org/doc/html/latest/filesystems/efivarfs.html
 - https://github.com/datasone/setup_var.efi
 - https://github.com/GeographicCone/UefiVarTool
+- https://www.mankier.com/1/efisecdb
 
