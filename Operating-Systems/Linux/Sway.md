@@ -83,3 +83,9 @@ then the icon in swaybar also worked. Fully reading wiki pages sometimes helps.
 # File Manager
 
 my recommendation is for [PCManFm](https://wiki.archlinux.org/title/PCManFM) simply because it allows for setting a custom terminal and requiring relatively few dependencies. 
+
+
+# usefull applets 
+
+- [Network manager applet](https://archlinux.org/packages/extra/x86_64/network-manager-applet/)
+- 
