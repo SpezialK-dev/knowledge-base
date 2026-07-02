@@ -15,3 +15,5 @@ STOP_CHARGE_THRESH_BAT0=80
 ```
 
 (XX should be replaced with a valid number). that is enough to have power limiting. 
+
+TLP can be used as a complete replacement for power profiles. 
